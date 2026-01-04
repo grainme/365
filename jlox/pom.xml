@@ -27,7 +27,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.grainme.jlox.App</mainClass>
+              <mainClass>com.grainme.jlox.Lox</mainClass>
             </manifest>
           </archive>
         </configuration>

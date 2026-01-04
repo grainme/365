@@ -9,7 +9,9 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Scanner;
 
-public class App {
+public class Lox {
+
+    static boolean hadError = false;
 
     public static void main(String[] args) throws IOException {
         if (args.length > 1) {
@@ -26,6 +28,9 @@ public class App {
     private static void runFile(String path) throws IOException {
         byte[] bytes = Files.readAllBytes(Path.of(path));
         run(new String(bytes, Charset.defaultCharset()));
+
+        // indicate an error in the exit code
+        if (hadError) System.exit(65);
     }
 
     private static void runPrompt() throws IOException {
@@ -37,6 +42,7 @@ public class App {
             String line = reader.readLine();
             if (line == null) break;
             run(line);
+            hadError = false;
         }
     }
 
@@ -47,5 +53,17 @@ public class App {
         for (Token token : tokens) {
             System.out.println(token);
         }
+    }
+
+    // it’s good engineering practice to separate the code that generates the errors from the code that reports them.
+    public static void error(int line, String message) {
+        report(line, "", message);
+    }
+
+    private static void report(int line, String where, String message) {
+        System.err.println(
+            "[line " + line + " ] Error" + where + ": " + message
+        );
+        hadError = true;
     }
 }

@@ -1,1 +1,2 @@
-com/grainme/jlox/App.class
+com/grainme/jlox/Token.class
+com/grainme/jlox/Lox.class
