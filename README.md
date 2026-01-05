@@ -1,5 +1,8 @@
 ## studying compilers every day.
 
+## day 05
+- Handled division character
+
 ## day 04
 - Error handling is part of the language's UI; generator detects errors and reporter displays them.
 - Lexemes: smallest meaningful substring of source code.

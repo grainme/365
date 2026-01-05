@@ -73,6 +73,15 @@ public class Scanner {
             case '<':
                 addToken(match('=') ? TokenType.LESS_EQUAL : TokenType.LESS);
                 break;
+            case '/':
+                // this is special, because it can be either a comment or division
+                if (match('/')) {
+                    // consumes until the end of the line
+                    while (peek() != '\n' && !isAtEnd()) advance();
+                } else {
+                    addToken(TokenType.SLASH);
+                }
+                break;
             default:
                 Lox.error(line, "Unexpected character: " + c);
                 break;
@@ -81,6 +90,11 @@ public class Scanner {
 
     private void addToken(TokenType type) {
         addToken(type, null);
+    }
+
+    private char peek() {
+        if (isAtEnd()) return '\0';
+        return source.charAt(current);
     }
 
     private char advance() {
