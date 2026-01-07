@@ -82,8 +82,23 @@ public class Scanner {
                     addToken(TokenType.SLASH);
                 }
                 break;
+            case ' ':
+            case '\r':
+            case '\t':
+                // ignore whitespace
+                break;
+            case '\n':
+                line++;
+                break;
+            case '"':
+                string();
+                break;
             default:
-                Lox.error(line, "Unexpected character: " + c);
+                if (isDigit(c)) {
+                    number();
+                } else {
+                    Lox.error(line, "Unexpected character: " + c);
+                }
                 break;
         }
     }
@@ -92,9 +107,51 @@ public class Scanner {
         addToken(type, null);
     }
 
+    private void number() {
+        while (isDigit(peek())) advance();
+
+        // consume the dot '.'
+        if (peek() == '.' && isDigit(peekNext())) advance();
+
+        while (isDigit(peek())) advance();
+
+        // TODO: what about this edge case: 123.697.189 (sort of like IP ADDR or a random string)
+        addToken(
+            TokenType.NUMBER,
+            Double.parseDouble(source.substring(start, current))
+        );
+    }
+
+    // Lox supports multi-line strings.
+    private void string() {
+        while (peek() != '"' && !isAtEnd()) {
+            if (peek() == '\n') line++;
+            advance();
+        }
+
+        if (isAtEnd()) {
+            Lox.error(line, "Unterminated string.");
+            return;
+        }
+
+        // consume the closing "
+        advance();
+
+        // trim the surrounding quotes
+        String value = source.substring(start + 1, current - 1);
+        addToken(TokenType.STRING, value);
+    }
+
+    // this is kind of like "advance()" but it doesn't consume the character
+    // aka "Lookahead"
     private char peek() {
         if (isAtEnd()) return '\0';
         return source.charAt(current);
+    }
+
+    private char peekNext() {
+        if (current + 1 >= source.length()) return '\0';
+        return source.charAt(current + 1);
     }
 
     private char advance() {
@@ -119,5 +176,9 @@ public class Scanner {
     // check if we consumed all the characters
     private boolean isAtEnd() {
         return current >= source.length();
+    }
+
+    private boolean isDigit(char c) {
+        return c >= '0' && c <= '9';
     }
 }

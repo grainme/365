@@ -7,7 +7,6 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Scanner;
 
 public class Lox {
 
@@ -47,8 +46,9 @@ public class Lox {
     }
 
     private static void run(String source) {
+        // this is com.grainme.jlox.Scanner not the std one :)
         Scanner sc = new Scanner(source);
-        List<Token> tokens = sc.tokens();
+        List<Token> tokens = sc.scanTokens();
 
         for (Token token : tokens) {
             System.out.println(token);
