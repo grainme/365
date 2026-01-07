@@ -1,5 +1,8 @@
 ## studying compilers every day.
 
+## day 06
+- Identify string and number literals
+
 ## day 05
 - Handled division character
 
