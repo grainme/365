@@ -1,5 +1,10 @@
 ## studying compilers every day.
 
+## day 07
+- identifier = pattern; reserved word = identifier + special meaning + forbidden for user naming; in other words, a reserved word is just an identifier that has been claimed by the language (has a semantic meaning)
+- **Maximal munch**: means the lexer always consumes the longest possible sequence of characters that form a token and only then the lexer checks if it's an **identifier** or a **reserved word**
+
+
 ## day 06
 - Identify string and number literals
 
