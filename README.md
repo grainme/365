@@ -1,5 +1,11 @@
 ## studying compilers every day.
 
+## day 08
+- in the last chapter, we wrote a scanner that took the raw source code and transforms it into a series of token.
+- the **parser**, we'll write will take this output and transforms yet again into another format.
+
+
+
 ## day 07
 - identifier = pattern; reserved word = identifier + special meaning + forbidden for user naming; in other words, a reserved word is just an identifier that has been claimed by the language (has a semantic meaning)
 - **Maximal munch**: means the lexer always consumes the longest possible sequence of characters that form a token and only then the lexer checks if it's an **identifier** or a **reserved word**
@@ -28,6 +34,6 @@
 - i'm not very good at coding in C; i might need some time to refresh my memory on this "empty" language :)
 - start implementing the scanner. "Scanning" or "lexing: lexical analysis" is the first step in any compiler or interpreter.
 
-# day 01
+## day 01
 - prepare resources 
 - setup the git repo
