@@ -3,6 +3,7 @@
 ## day 08
 - in the last chapter, we wrote a scanner that took the raw source code and transforms it into a series of token.
 - the **parser**, we'll write will take this output and transforms yet again into another format.
+<img width="785" height="156" alt="Screenshot 2026-01-12 at 22 35 32" src="https://github.com/user-attachments/assets/31000cc7-e9f9-4472-8bbc-085f1b8e4af2" />
 
 
 
