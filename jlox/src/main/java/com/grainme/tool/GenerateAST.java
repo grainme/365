@@ -41,13 +41,51 @@ public class GenerateAST {
         PrintWriter writer = new PrintWriter(path, Charset.defaultCharset());
 
         writer.println("package com.grainme.jlox;");
-        writer.println("");
+        writer.println();
         writer.println("abstract class " + baseName + "{");
-        writer.println("");
+        writer.println();
 
-        // TODO: generate subclasses (types)
+        for (String type : types) {
+            String[] typeSplit = type.split(":");
+            String className = typeSplit[0].trim();
+            String fields = typeSplit[1].trim();
+            defineType(writer, baseName, className, fields);
+        }
 
         writer.println("}");
         writer.close();
+    }
+
+    private static void defineType(
+        PrintWriter writer,
+        String baseName,
+        String className,
+        String fields
+    ) {
+        writer.println(
+            "   static class " + className + " extends " + baseName + "{"
+        );
+
+        // fields
+        String[] fieldList = fields.split(", ");
+        writer.println();
+        for (String field : fieldList) {
+            String typeName = field.split(" ")[0].trim();
+            String valueName = field.split(" ")[1].trim();
+            writer.println("    final " + typeName + " " + valueName + ";");
+        }
+
+        // constructor
+        writer.println("        " + className + "(" + fields + ") {");
+
+        // Store params in fields
+        for (String field : fieldList) {
+            String valueName = field.split(" ")[1].trim();
+            writer.println("      this." + valueName + " = " + valueName + ";");
+        }
+
+        writer.println("    }");
+
+        writer.println("  }");
     }
 }

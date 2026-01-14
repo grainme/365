@@ -2,3 +2,4 @@
 /Users/marouaneboufarouj/Workspace/github.com/grainme/365/jlox/src/main/java/com/grainme/jlox/Scanner.java
 /Users/marouaneboufarouj/Workspace/github.com/grainme/365/jlox/src/main/java/com/grainme/jlox/Token.java
 /Users/marouaneboufarouj/Workspace/github.com/grainme/365/jlox/src/main/java/com/grainme/jlox/TokenType.java
+/Users/marouaneboufarouj/Workspace/github.com/grainme/365/jlox/src/main/java/com/grainme/tool/GenerateAST.java

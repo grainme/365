@@ -2,3 +2,4 @@ com/grainme/jlox/Scanner.class
 com/grainme/jlox/Lox.class
 com/grainme/jlox/TokenType.class
 com/grainme/jlox/Token.class
+com/grainme/tool/GenerateAST.class
