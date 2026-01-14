@@ -1,5 +1,12 @@
 ## studying compilers every day.
 
+## day 10
+- finished part 2 of day 09
+
+# day 09 
+- Implemented a script that generates AST node classes automatically instead of writing them by hand.
+- Each node = one language construct (binary expression, literal, etc.) ~21 classes => that's why we needed metaprogramming :)
+
 ## day 08
 - in the last chapter, we wrote a scanner that took the raw source code and transforms it into a series of token.
 - the **parser**, we'll write will take this output and transforms yet again into another format.
