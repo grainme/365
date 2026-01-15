@@ -1,5 +1,12 @@
 ## studying compilers every day.
 
+## day 11
+- **Expression problem**: OOP makes adding types easy but operations hard (need to modify every class). Visitor pattern flips this—operations become easy to add.
+- **Double dispatch trick**: `expr.accept(visitor)` → expression calls `visitor.visitExprType(this)` back. Polymorphism fires twice to route correctly.
+- Implemented Visitor interface with one visit method per expression type. Each concrete class's accept method is one line calling its corresponding visit method.
+- **AstPrinter**: My first visitor that converts AST to Lisp-style strings `(* (- 123) (group 45.67))` showing tree structure explicitly.
+- The parenthesize helper recursively calls accept on child expressions to traverse the entire tree.
+
 ## day 10
 - finished part 2 of day 09
 

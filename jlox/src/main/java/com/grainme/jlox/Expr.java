@@ -2,6 +2,13 @@ package com.grainme.jlox;
 
 abstract class Expr {
 
+    interface Visitor<R> {
+        R visitBinaryExpr(Binary expr);
+        R visitUnaryExpr(Unary expr);
+        R visitGroupingExpr(Grouping expr);
+        R visitLiteralExpr(Literal expr);
+    }
+
     static class Binary extends Expr {
 
         final Expr left;
@@ -12,6 +19,11 @@ abstract class Expr {
             this.left = left;
             this.op = op;
             this.right = right;
+        }
+
+        @Override
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitBinaryExpr(this);
         }
     }
 
@@ -24,6 +36,11 @@ abstract class Expr {
             this.op = op;
             this.right = right;
         }
+
+        @Override
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitUnaryExpr(this);
+        }
     }
 
     static class Grouping extends Expr {
@@ -32,6 +49,11 @@ abstract class Expr {
 
         Grouping(Expr expression) {
             this.expression = expression;
+        }
+
+        @Override
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitGroupingExpr(this);
         }
     }
 
@@ -42,5 +64,12 @@ abstract class Expr {
         Literal(Object value) {
             this.value = value;
         }
+
+        @Override
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitLiteralExpr(this);
+        }
     }
+
+    abstract <R> R accept(Visitor<R> visitor);
 }
