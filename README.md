@@ -10,7 +10,7 @@
 ## day 10
 - finished part 2 of day 09
 
-# day 09 
+## day 09 
 - Implemented a script that generates AST node classes automatically instead of writing them by hand.
 - Each node = one language construct (binary expression, literal, etc.) ~21 classes => that's why we needed metaprogramming :)
 
